@@ -61,6 +61,7 @@
 
 ### faiss.IndexHNSWFlat(d, M, faiss.METRIC_INNER_PRODUCT)
 - A multi-layered graph is constructed, where each node is vector and is connected to atmost M nearest neighbours.
+- Use M ≈ log(N)
 - Searching:
    - Starts from entry points.
    - Using a greedy search, we move closer to query vector and expands the search to neighbours.
