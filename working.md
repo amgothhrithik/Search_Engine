@@ -56,7 +56,7 @@
 #### index.search(text_embedding.cpu().numpy(), 5)
 - It returns top-5 nearest neighbors with distance and indices.
 
-## In  IndexIVFFlat and IndexIVFPQ
+### In  IndexIVFFlat and IndexIVFPQ
 - With large dataset, we will first cluster the datapoint and find k-top datapoint from that clusters.
 
 ### faiss.IndexHNSWFlat(d, M, faiss.METRIC_INNER_PRODUCT)
