@@ -4,23 +4,25 @@ We're building an intelligent product search backend using FastAPI, CLIP, and FA
 - Find visually and semantically similar items from a fashion dataset.
 - Get quick and accurate search results powered by precomputed embeddings and FAISS indexing.
 
-## CLIP Model 
-- Uses OpenAI’s CLIP (ViT-B/32) model to convert both images and text into embeddings in the same vector space.
-- These embeddings capture visual + textual meaning of fashion items.
+## Architecture Overview
+Components:
 
-## Embedding Store + FAISS Index
-- All products in the dataset are preprocessed:
-  - Image and caption embeddings are averaged and saved.
-- A FAISS index is built using these embeddings for fast similarity search using cosine distance.
+1. CLIP Model:
+   - Model: openai/clip-vit-base-patch32
+   - Converts images and text into 512-dimensional vector embeddings
+   - Combines both image and text embeddings by averaging
+2. Embedding + FAISS Indexing:
+   - All dataset items are embedded and saved as .npy file
+   - Embeddings are L2-normalized
+   - Stored in a FAISS index (inner product → cosine similarity)
 
-## FastAPI Backend
-Provides a /upload endpoint to receive:
-- An image (img)
-- A text caption (text)
-- Optional filter like color (can be extended).
+3. Search API (FastAPI):
+   - POST /upload: Accepts image, text, and optional color.
+   - Computes embedding for the query.
+   - Searches FAISS index for top-5 similar items.
+   - Returns image results encoded in base64 format
   
-Computes the embedding of the query input.
-Uses FAISS to find top-5 similar products from the dataset.
+
 
 # Dataset
 We're using the `ashraq/fashion-product-images-small` dataset from HuggingFace.
