@@ -16,10 +16,9 @@ We're building an intelligent product search backend using FastAPI, CLIP, and FA
 ## FastAPI Backend
 Provides a /upload endpoint to receive:
 - An image (img)
-
 - A text caption (text)
-
-- Optional filter like color (can be extended)
+- Optional filter like color (can be extended).
+  
 Computes the embedding of the query input.
 Uses FAISS to find top-5 similar products from the dataset.
 
